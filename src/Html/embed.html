@@ -1,0 +1,20 @@
+<div id="targetforquotes" style="opacity:0;transition:opacity 500ms ease 0s">
+    <div class="quote-text"></div>
+    <div class="quote-author"></div>
+</div>
+<script>
+if (fetch) {
+    var url = 'http://ec2-54-157-244-66.compute-1.amazonaws.com:8889/quote';
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            var textElem = document.querySelector('#targetforquotes.quote-text');
+            textElem.textContent = response.text;
+            var authElem = document.querySelector('#targetforquotes.quote-author');
+            authElem.textContent = response.author;
+            document.getElementById('targetforquotes').style.opacity = '1';
+        });
+}
+</script>
